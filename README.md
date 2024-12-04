@@ -7,6 +7,12 @@
 - [Установить Java Developers Kit 8 (JDK)](https://bell-sw.com/pages/downloads/#jdk-8-lts)
 - [Установить Docker](https://www.docker.com/get-started/)
 
+## Клонирование репозитория
+Для начала работы с репозиторием после того как было установлено все необходимое ПО следует:
+- Запустить IntelliJ IDEA Community Edition;
+- Склонировать репозиторий
+
+
 ## Проверка работоспособности
 
 ### Проверка установки Java
