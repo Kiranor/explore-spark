@@ -7,9 +7,9 @@ lazy val root = (project in file("."))
     name := "explore-spark"
   )
 
-
 val sparkVersion = "3.5.3"
 val log4jVersion = "2.24.0"
+val postgresVersion = "42.6.0"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,
@@ -17,4 +17,6 @@ libraryDependencies ++= Seq(
   // logging
   "org.apache.logging.log4j" % "log4j-api" % log4jVersion,
   "org.apache.logging.log4j" % "log4j-core" % log4jVersion,
+  // postgres for DB connectivity
+  "org.postgresql" % "postgresql" % postgresVersion
 )
