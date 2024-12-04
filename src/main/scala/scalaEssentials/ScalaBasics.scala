@@ -26,7 +26,7 @@ object ScalaBasics extends App {
   varBoolean = true
   // Символы `???` можно использовать для еще не реализованных методов или переменных.
   // При этом программа не скомпилируется, но будут доступные все подсказки типов для этой переменной. Бывает полезно при прототипирование программы.
-  val undeclaredVariable: List[String] = ??? //List.empty[String]
+  val undeclaredVariable: List[String] = List.empty[String]
   undeclaredVariable.length
 
   //  Функции
