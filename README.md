@@ -59,12 +59,14 @@
 
 Для проверки успешности запуска контейнера с помощью команды `docker ps` необходимо вывести список запущенных контейнеров.
 Пример запущенного контейнера БД Postgres представлен на следующем скриншоте.
+
 ![docker_ps.png](files/docker_ps.png)
 
 Для проверки успешности создания объектов БД с помощью плагина `DatabaseHelper` необходимо подключиться к БД и посмотреть на созданные объекты.
 Host - localhost, database - explore_spark, user - docker, password - docker.
 
 Шаги для подключения представлены на скриншотах ниже.
+
 ![database_viewer.png](files/database_viewer.png)
 ![pg_connection_properties.png](files/pg_connection_properties.png)
 
@@ -73,4 +75,5 @@ Host - localhost, database - explore_spark, user - docker, password - docker.
 ![pg_connection_tables.png](files/pg_connection_tables.png)
 
 После завершения работы по заданию остановить контейнер можно с помощью команды `docker stop postgres` и убедиться, что больше нет запущенных контейнеров с помощью команды `docker ps` как показано на скриншоте ниже.
+
 ![docker_stop.png](files/docker_stop.png)
