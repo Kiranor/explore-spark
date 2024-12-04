@@ -69,6 +69,7 @@ Host - localhost, database - explore_spark, user - docker, password - docker.
 ![pg_connection_properties.png](files/pg_connection_properties.png)
 
 В итоге в БД должны быть присутствовать следующие таблицы, представленные на скриншоте.
+
 ![pg_connection_tables.png](files/pg_connection_tables.png)
 
 После завершения работы по заданию остановить контейнер можно с помощью команды `docker stop postgres` и убедиться, что больше нет запущенных контейнеров с помощью команды `docker ps` как показано на скриншоте ниже.
