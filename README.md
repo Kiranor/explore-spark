@@ -41,6 +41,16 @@
 
 В переменные окружения необходимо добавить `SPARK_LOCAL_HOSTNAME = localhost`
 
+## Ошибка при запуске контейнера Docker
+
+```
+ngrigoryev@MacBook-Air-Grigorev explore-spark % docker-compose up
+WARN[0000] /Users/ngrigoryev/Documents/Work/Gnivc/dev_od_eiap/explore-spark/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+Cannot connect to the Docker daemon at unix:///Users/ngrigoryev/.docker/run/docker.sock. Is the docker daemon running?
+```
+
+Не запущено приложение Docker Desktop, нужно запустить и повторить операцию.
+
 # Домашнее задание
 
 Порядок выполнения заданий (от простого к сложному):
@@ -51,6 +61,8 @@
 ## 4. [`AggregationsTasks.scala`](src/main/scala/tasks/AggregationsTasks.scala)
 ## 5. [`JoinsTasks.scala`](src/main/scala/tasks/JoinsTasks.scala)
 ## 6. [`JdbcIntegrationTasks.scala`](src/main/scala/tasks/JdbcIntegrationTasks.scala)
+
+### Подготовка docker-контейнера
 
 В рамках данного задания предполагается интеграционное взаимодействие с сервером БД Postgres, развернутого в локальном Docker-контейнере.
 Конфигурация образа находится в файле [docker-compose.yml](docker-compose.yml) и включает название контейнера, порт для подключения, а также имя пользователя и пароль для подключения.
@@ -77,3 +89,9 @@ Host - localhost, database - explore_spark, user - docker, password - docker.
 После завершения работы по заданию остановить контейнер можно с помощью команды `docker stop postgres` и убедиться, что больше нет запущенных контейнеров с помощью команды `docker ps` как показано на скриншоте ниже.
 
 ![docker_stop.png](files/docker_stop.png)
+
+### Структура и связи таблиц БД
+
+Все таблицы находятся в схеме `public`, связи отображены на следующем скриншоте.
+
+![employees-schema.png](files/employees-schema.png)
