@@ -50,15 +50,15 @@ spark.sql(
       |GROUP BY t.title
       |ORDER BY avg_salary DESC;
       |""".stripMargin)
-//  .show()
-.==(
-titlesDF
-  .join(salariesDF, titlesDF.col("emp_no") === salariesDF.col("emp_no"))
-  .groupBy(titlesDF.col("title"))
-  .avg("salary")
-  .orderBy(desc("avg(salary)"))
-  .select(col("title"), round(col("avg(salary)"), 2))
-  .withColumnRenamed("round(avg(salary), 2)", "avg_salary"))
-//  .show()
+  .show()
+//.==(
+//titlesDF
+//  .join(salariesDF, titlesDF.col("emp_no") === salariesDF.col("emp_no"))
+//  .groupBy(titlesDF.col("title"))
+//  .avg("salary")
+//  .orderBy(desc("avg(salary)"))
+//  .select(col("title"), round(col("avg(salary)"), 2))
+//  .withColumnRenamed("round(avg(salary), 2)", "avg_salary"))
+////  .show()
 
 salariesDF.==(salariesDF)

@@ -7,7 +7,7 @@ import tasks.JdbcIntegrationTasks.spark
 
 import java.util.Properties
 
-// Создадим объект, содержащий сведения о параметрах подключения к БД, для последующей простоты использования
+// Создадим объект, содержащий сведения о параметрах подключения к БД, для последующей простоты использования и читаемости кода.
 object DatabaseUtils {
   private val databasePwd = "docker"
   private val databaseUser = "docker"
@@ -36,55 +36,21 @@ object JdbcIntegrationTasks extends App {
   import spark.implicits._
 
   // Можем перейти в Spark UI по адресу http://localhost:4040
-  // Для меньшего количества сообщений в логе от spark можно снизить уровень логирования следующей командой
+  // Для меньшего количества информационных сообщений в логе от spark можно снизить уровень логирования следующей командой.
   spark.sparkContext.setLogLevel("ERROR")
 
-  /*  Задание 1. Определить число работников мужского и женского пола.*/
+  // Пример чтения из таблицы с помощью метода DatabaseUtils.readTable.
+  // При необходимости можете реализовать чтение из таблиц любым удобным способом.
   val employeesDF: DataFrame = DatabaseUtils.readTable("public.employees")
 
-  employeesDF.createOrReplaceTempView("employees")
+  // Задание 1. Посчитайте количество работников мужского и женского пола и отсортируйте в порядке убывания.
 
-  spark.sql(
-    """
-      |select gender, count(gender) as gender_count
-      |from employees
-      |group by gender
-      |order by gender_count desc
-      |""".stripMargin)
-    .show()
+  // Задание 2. Найдите среднюю зарплату для каждой должности, округлите до 2 знаков после запятой и расположите в порядке убывания.
 
-  employeesDF
-    .groupBy(col("gender"))
-    .count()
-    .withColumnRenamed("count", "gender_count")
-    .orderBy(desc("gender_count"))
-    .show()
+  // Задание 3. Найдите всех сотрудников, которые работали как минимум в 2-х отделах. Укажите их имя и фамилию в одной колонке, а также количество отделов, в которых они работали. Посчитайте количество таких сотрудников.
 
-  // Задание 2.
-  val titlesDF: DataFrame = DatabaseUtils.readTable("public.titles")
-  val salariesDF: DataFrame = DatabaseUtils.readTable("public.salaries")
+  // Задание 4. Найдите имя, фамилию и оклад второго по величине оплачиваемого сотрудника.
 
-  titlesDF.createOrReplaceTempView("titles")
-  salariesDF.createOrReplaceTempView("salaries")
-
-  spark.sql(
-      """
-        |SELECT t.title, ROUND(AVG(s.salary), 2) as avg_salary
-        |FROM titles t
-        |JOIN salaries s
-        |ON s.emp_no = t.emp_no
-        |GROUP BY t.title
-        |ORDER BY avg_salary DESC;
-        |""".stripMargin)
-    //  .show()
-    .==(
-      titlesDF
-        .join(salariesDF, titlesDF.col("emp_no") === salariesDF.col("emp_no"))
-        .groupBy(titlesDF.col("title"))
-        .avg("salary")
-        .orderBy(desc("avg(salary)"))
-        .select(col("title"), round(col("avg(salary)"), 2))
-        .withColumnRenamed("round(avg(salary), 2)", "avg_salary"))
-  //  .show()
+  // Задание 5. Для каждого отдела найдите возраст самого молодого сотрудника на дату приёма на работу.
 
 }
