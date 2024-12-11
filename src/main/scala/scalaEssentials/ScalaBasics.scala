@@ -21,9 +21,8 @@ object ScalaBasics extends App {
   //  valBoolean = false
 
   var varBoolean: Boolean = false
-
-
   varBoolean = true
+
   // Символы `???` можно использовать для еще не реализованных методов или переменных.
   // При этом программа не скомпилируется, но будут доступные все подсказки типов для этой переменной. Бывает полезно при прототипирование программы.
   val undeclaredVariable: List[String] = List.empty[String]
@@ -31,16 +30,23 @@ object ScalaBasics extends App {
 
   //  Функции
 
+    // Если функция только выполняет какую-то операцию без возвращения значения, то типом ее возвращаемого значения будет Unit
+  def printName(name: String): Unit = println(s"Hello, $name!")
+
+    // Функции без переменных
+
+  def printGreet = println("Greetings")
+
+  // Лямбда-функции (анонимные функции)
+  //  Анонимная функция, также известная как лямбда, представляет собой блок кода, который передается в качестве аргумента функции высшего порядка.
+  //  Википедия определяет анонимную функцию как “определение функции, не привязанное к идентификатору”.
+
   def defaultMaxFunction(x: Int, y: Int): Int = {
     if (x > y)
       x
     else
       y
   }
-
-  def printName(name: String): Unit = println(s"Hello, $name!")
-
-  def printGreet(): Unit = println("Greetings")
 
   val lambdaMaxFunction: (Int, Int) => Int = (x, y) => if (x > y) x else y
 
@@ -52,7 +58,6 @@ object ScalaBasics extends App {
   val x = 1 + 2 == 1.+(2)
 
   // Управляющие конструкции
-
   lazy val lazyExpression = if (1 > 2) "Grater" else "Smaller"
 
   var i = 0
@@ -87,12 +92,27 @@ object ScalaBasics extends App {
   combined.foreach(println)
 
   // Pattern Matching
-  val unknown: Any = 45
-  val ordinal = unknown match {
-    case s: String => "first"
-    case s: Int => "second"
-    case _ => "unknown"
+  // Сопоставление с примером (Pattern matching) - это механизм сравнения значений с определенным примером.
+  // При успешном совпадении значение может быть разложено на составные части. Мы рассматриваем сопоставление с примером, как более мощную версию switch оператора из Java.
+  // Eго также можно использовать вместо серии if/else выражений.
+
+  import scala.util.Random
+
+  val randomVal: Int = Random.nextInt(10)
+
+  // Значение константы randomVal выше представляет собой случайное целое число от 0 до 9. randomVal становится левым операндом оператора match, а справа - выражением с четырьмя примерами (называемые еще вариантами).
+  // Последний вариант _ - позволяет “поймать все оставшиеся варианты” т.е. для любого числа больше 2.
+
+  val matched = randomVal match {
+    case 0 => "zero"
+    case 1 => "one"
+    case 2 => "two"
+    case _ => "other"
   }
+
+  // Как и в Java, в Scala есть конструкция try/catch/finally, позволяющая перехватывать исключения и управлять ими.
+  // Для обеспечения согласованности Scala использует тот же синтаксис, что и выражения match, и поддерживает сопоставление с образцом для различных возможных исключений.
+
   try {
     throw new NullPointerException
   } catch {
@@ -113,6 +133,9 @@ object ScalaBasics extends App {
 
   //  ООП
 
+  // Traits позволяют указывать (абстрактные) интерфейсы, а также конкретные реализации.
+  // В отличие от других языков с поддержкой ООП, таких как Java, возможно, основным инструментом декомпозиции в Scala являются не классы, а трейты.
+
   trait MyTrait {
     def greet(): Unit = println("Greetings!")
   }
@@ -125,7 +148,11 @@ object ScalaBasics extends App {
     def abstractDef(x: Int, y: Float): List[Tuple2[Int, Float]]
   }
 
+  // Case class используются для моделирования неизменяемых структур данных.
+
   case class MyCaseClass(name: String, id: UUID)
+
+  // Классы могут реализовывать интерфейсы, заданные трейтами и абстрактными классами.
 
   class MyClass(x: Int, y: Float = 10f) extends MyAbstractClass with MyTrait {
 
@@ -140,6 +167,8 @@ object ScalaBasics extends App {
     protected[scalaEssentials] def getCaseClass: MyCaseClass = MyCaseClass("someStaticField", UUID.randomUUID())
   }
 
+  // Объект — это класс, который имеет ровно один экземпляр. Инициализируется он лениво, тогда, когда на его элементы ссылаются, подобно lazy val.
+  // Объекты в Scala позволяют группировать методы и поля в одном пространстве имен, аналогично тому, как вы используете static члены в классе в Java, Javascript (ES6) или @staticmethod в Python.
   object MyClass {
   }
 
@@ -149,20 +178,9 @@ object ScalaBasics extends App {
 
   import scala.math.pow
 
+  // Функция map принимает на вход другую функцию, которую применять к каждому элементу коллекции
   (0 to 10 by 1).map(x => Map(x -> pow(x, 2).toInt))
-
+  // Функция filter принимает на вход другую функцию (должна возвращать true\false), которую применять к каждому элементу коллекции
   val findYear: List[String] = List("2018-03-01", "2019-03-01", "2020-03-01 10:00:00", "Monday 2018-03-01", "2018-03-01 Thursday")
     .filter(_.matches("^2018.*"))
-
-  // Applying flatMap
-  val flatMapResult = Seq("Geeks", "for", "Geeks").flatMap(_.toUpperCase)
-
-  // Creating a list of numbers
-  val list = List(2, 3, 4)
-
-  // Defining a function
-  def myFunction(x:Int) = List(x-1, x, x+1)
-
-  // Applying flatMap
-  val result = list.flatMap(myFunction)
 }  

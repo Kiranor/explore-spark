@@ -10,7 +10,6 @@ object DataSourceTasks extends App {
    * Задание 2: прочитать DF data/movies.json и затем записать его как
    * - csv-файл с разделителем \t
    * - Parquet-файл
-   * -(*) как таблицу hive my_schema.movies
    */
 
 
