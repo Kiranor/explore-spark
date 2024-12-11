@@ -171,6 +171,7 @@ Cannot connect to the Docker daemon at unix:///Users/ngrigoryev/.docker/run/dock
 # Полезные ссылки
 
 - [Документация Apache Spark](https://spark.apache.org/docs/latest/index.html)
+- [Встроенные функции Apache Spark](https://spark.apache.org/docs/latest/api/sql/index.html)
 - [Документация Git](https://git-scm.com/doc)
 - [Документация IntelliJ IDEA Community Edition](https://www.jetbrains.com/ru-ru/idea/)
 - [Документация по интерфейсу Git в IDEA](https://www.jetbrains.com/help/idea/using-git-integration.html)

@@ -41,24 +41,3 @@ val salariesDF: DataFrame = DatabaseUtils.readTable("public.salaries")
 titlesDF.createOrReplaceTempView("titles")
 salariesDF.createOrReplaceTempView("salaries")
 
-spark.sql(
-    """
-      |SELECT t.title, ROUND(AVG(s.salary), 2) as avg_salary
-      |FROM titles t
-      |JOIN salaries s
-      |ON s.emp_no = t.emp_no
-      |GROUP BY t.title
-      |ORDER BY avg_salary DESC;
-      |""".stripMargin)
-  .show()
-//.==(
-//titlesDF
-//  .join(salariesDF, titlesDF.col("emp_no") === salariesDF.col("emp_no"))
-//  .groupBy(titlesDF.col("title"))
-//  .avg("salary")
-//  .orderBy(desc("avg(salary)"))
-//  .select(col("title"), round(col("avg(salary)"), 2))
-//  .withColumnRenamed("round(avg(salary), 2)", "avg_salary"))
-////  .show()
-
-salariesDF.==(salariesDF)
