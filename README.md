@@ -14,10 +14,9 @@
     * [2. `DataSourceTasks.scala`](#2-datasourcetasksscala)
     * [3. `ColumnsAndExpressionsTasks.scala`](#3-columnsandexpressionstasksscala)
     * [4. `AggregationsTasks.scala`](#4-aggregationstasksscala)
-    * [5. `JoinsTasks.scala`](#5-joinstasksscala)
-    * [6. `JdbcIntegrationTasks.scala`](#6-jdbcintegrationtasksscala)
-      * [6.1 Подготовка docker-контейнера](#61-подготовка-docker-контейнера)
-      * [6.2 Структура и связи таблиц БД](#62-структура-и-связи-таблиц-бд)
+    * [5. `JdbcIntegrationTasks.scala`](#5-jdbcintegrationtasksscala)
+      * [5.1 Подготовка docker-контейнера](#51-подготовка-docker-контейнера)
+      * [5.2 Структура и связи таблиц БД](#52-структура-и-связи-таблиц-бд)
 * [Устранение ошибок](#устранение-ошибок)
   * [При запуске spark-shell или кода в IDEA возникает ошибка `org.apache.spark.SparkException: Invalid Spark URL: spark://HeartbeatReceiver@HOME_PC:53176`](#при-запуске-spark-shell-или-кода-в-idea-возникает-ошибка-orgapachesparksparkexception-invalid-spark-url-sparkheartbeatreceiverhome_pc53176)
   * [Ошибка при запуске контейнера Docker](#ошибка-при-запуске-контейнера-docker)
@@ -59,11 +58,10 @@
 
 ## Проверка компиляции и запуска приложений
 
-В текущем проекте перейти в модуль `testpkg`, открыть класс `FirstTestClass` и запустить его выполнение с помощью интерфейса IDEA или комбинацией `Ctrl+Shift+F10`.
-
-Также можно запустить это приложение прямо из текущего файла `README.md`, нажав выше на имя класса со стрелкой.
+В текущем проекте перейти в модуль [playground](src/main/scala/playground), открыть класс [`Playground.scala`](src/main/scala/playground/Playground.scala) и запустить его выполнение с помощью интерфейса IDEA или комбинацией `Ctrl+Shift+F10`.
 
 Результатом выполнения тестового приложения должен быть вывод в консоль информации, представленной на скриншоте ниже:
+
 ![spark_validation.png](files/spark_validation.png "Пример вывода в лог")
 
 # Домашнее задание
@@ -111,11 +109,9 @@
 
 ### 4. [`AggregationsTasks.scala`](src/main/scala/tasks/AggregationsTasks.scala)
 
-### 5. [`JoinsTasks.scala`](src/main/scala/tasks/JoinsTasks.scala)
+### 5. [`JdbcIntegrationTasks.scala`](src/main/scala/tasks/JdbcIntegrationTasks.scala)
 
-### 6. [`JdbcIntegrationTasks.scala`](src/main/scala/tasks/JdbcIntegrationTasks.scala)
-
-#### 6.1 Подготовка docker-контейнера
+#### 5.1 Подготовка docker-контейнера
 
 В рамках данного задания предполагается интеграционное взаимодействие с сервером БД Postgres, развернутого в локальном Docker-контейнере.
 Конфигурация образа находится в файле [docker-compose.yml](docker-compose.yml) и включает название контейнера, порт для подключения, а также имя пользователя и пароль для подключения.
@@ -143,7 +139,7 @@ Host - localhost, database - explore_spark, user - docker, password - docker.
 
 ![docker_stop.png](files/docker_stop.png)
 
-#### 6.2 Структура и связи таблиц БД
+#### 5.2 Структура и связи таблиц БД
 
 Все таблицы находятся в схеме `public`, связи отображены на следующем скриншоте.
 
