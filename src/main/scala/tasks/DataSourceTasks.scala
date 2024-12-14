@@ -5,6 +5,8 @@ import org.apache.spark.sql.SparkSession
 object DataSourceTasks extends App {
 
   val spark = SparkSession.builder().appName("DFTask2").config("spark.master", "local").getOrCreate()
+  spark.sparkContext.setLogLevel("ERROR")
+  import spark.implicits._
 
   /**
    * Задание 2: прочитать DF data/movies.json и затем записать его как
@@ -12,5 +14,16 @@ object DataSourceTasks extends App {
    * - Parquet-файл
    */
 
+  val moviesDF = spark.read.json("src/main/resources/data/movies.json")
+
+  // CSV
+  moviesDF.write
+    .format("csv")
+    .option("header", "true")
+    .option("sep", "\t")
+    .save("src/main/resources/data/movies.csv")
+
+  // Parquet
+  moviesDF.write.save("src/main/resources/data/my_movies.parquet")
 
 }
