@@ -60,10 +60,6 @@
 
 В текущем проекте перейти в модуль [playground](src/main/scala/playground), открыть класс [`Playground.scala`](src/main/scala/playground/Playground.scala) и запустить его выполнение с помощью интерфейса IDEA или комбинацией `Ctrl+Shift+F10`.
 
-Результатом выполнения тестового приложения должен быть вывод в консоль информации, представленной на скриншоте ниже:
-
-![spark_validation.png](files/spark_validation.png "Пример вывода в лог")
-
 # Домашнее задание
 
 ## Основы работы с git
